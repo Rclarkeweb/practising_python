@@ -17,3 +17,20 @@ print("Highest to lowest: ", sorted(scores))
 
 # Print scores in descending order
 print("Lowest to Highest:", list(reversed(sorted(scores))))
+
+# Print total of scores
+print("Total sum of scores: ", sum(scores))
+
+# Add a new score to the list
+inputscore = int(input("What did you score?: "))
+
+if inputscore in scores:
+    print("Sorry, that score is already in the list")
+elif inputscore not in scores:
+    print("Lets add your score to the list!")
+    scores.append(inputscore)
+else:
+    print("Error")
+    
+print(scores)
+
