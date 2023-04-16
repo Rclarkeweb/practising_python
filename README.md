@@ -1,12 +1,14 @@
 # A repository for some small practise Python programs
 
-## List of code files:
-
+## List of files:
+- [Books Year](https://github.com/Rclarkeweb/practising_python/blob/main/Books%20year.py)  
+- [Coin Flip](https://github.com/Rclarkeweb/practising_python/blob/main/Coin%20flip.py)  
+- [Egg Boxes](https://github.com/Rclarkeweb/practising_python/blob/main/Egg%20boxes.py)  
 
 
 ## Tech used
 
-All using Python 3.
+All code uses Python 3.
 
 **Language Icons**
 
