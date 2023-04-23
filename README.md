@@ -7,6 +7,7 @@
 - [Random Future Pet](https://github.com/Rclarkeweb/practising_python/blob/main/Random%20future%20pet.py)
 - [Score List](https://github.com/Rclarkeweb/practising_python/blob/main/Score%20List.py)
 - [Winning Lottery Numbers](https://github.com/Rclarkeweb/practising_python/blob/main/Winning%20Lottery%20Numbers.py)
+- [Coding Quiz](https://github.com/Rclarkeweb/practising_python/blob/main/Coding%20Quiz.py)
 
 
 ## Tech used
