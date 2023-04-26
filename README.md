@@ -8,7 +8,7 @@
 - [Score List](https://github.com/Rclarkeweb/practising_python/blob/main/Score%20List.py)
 - [Winning Lottery Numbers](https://github.com/Rclarkeweb/practising_python/blob/main/Winning%20Lottery%20Numbers.py)
 - [Coding Quiz](https://github.com/Rclarkeweb/practising_python/blob/main/Coding%20Quiz.py)
-
+- [Number Guessing Game](https://github.com/Rclarkeweb/practising_python/blob/main/Number%20Guessing%20Game.py)
 
 ## Tech used
 
