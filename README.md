@@ -12,6 +12,7 @@
 - [Number Guessing Game](https://github.com/Rclarkeweb/practising_python/blob/main/Number%20Guessing%20Game.py)
 - [Scrabble Score](https://github.com/Rclarkeweb/practising_python/blob/main/Scrabble.py)
 - [Odd or Even](https://github.com/Rclarkeweb/practising_python/blob/main/Odd-or-Even.py)
+- [Calculator](https://github.com/Rclarkeweb/practising_python/blob/main/Calculator.py)
 
 ## Tech used
 
