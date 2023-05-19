@@ -13,6 +13,7 @@
 - [Scrabble Score](https://github.com/Rclarkeweb/practising_python/blob/main/Scrabble.py)
 - [Odd or Even](https://github.com/Rclarkeweb/practising_python/blob/main/Odd-or-Even.py)
 - [Calculator](https://github.com/Rclarkeweb/practising_python/blob/main/Calculator.py)
+- [Calendar](https://github.com/Rclarkeweb/practising_python/blob/main/Calendar.py)
 
 ## Tech used
 
