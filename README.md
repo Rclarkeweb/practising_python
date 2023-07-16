@@ -15,6 +15,7 @@
 - [Calculator](https://github.com/Rclarkeweb/practising_python/blob/main/Calculator.py)
 - [Calendar](https://github.com/Rclarkeweb/practising_python/blob/main/Calendar.py)
 - [Dice Game](https://github.com/Rclarkeweb/practising_python/blob/main/Dice-game.py)
+- [Vowel Eater](https://github.com/Rclarkeweb/practising_python/blob/main/Vowel-Eater.py)
 
 ## Tech used
 
