@@ -1,5 +1,43 @@
 # Python Notes  
 
+
+## Try and Except
+
+Try a block of code if it doesnt work execute another block.  
+You can specific exceptions for different errors such as Value Error or Zero Division.  
+You can also have a default except, this must always be at the end.  
+```
+try:
+    value = int(input('Enter a natural number: '))
+    print('The reciprocal of', value, 'is', 1/value)        
+except ValueError:
+    print('I do not know what to do.')    
+except ZeroDivisionError:
+    print('Division by zero is not allowed in our Universe.')    
+except:
+    print('Something strange has happened here... Sorry!')
+```
+
+#### ZeroDivisionError
+
+This appears when you try to force Python to perform any operation which provokes division in which the divider is zero, or is indistinguishable from zero. Note that there is more than one Python operator which may cause this exception to raise. Can you guess them all?
+
+Yes, they are: /, //, and %.
+
+#### ValueError
+
+Expect this exception when you're dealing with values which may be inappropriately used in some context. In general, this exception is raised when a function (like int() or float()) receives an argument of a proper type, but its value is unacceptable.
+
+##### TypeError
+
+This exception shows up when you try to apply a data whose type cannot be accepted in the current context.  
+
+#### AttributeError
+
+This exception arrives – among other occasions – when you try to activate a method which doesn't exist in an item you're dealing with.
+
+***   
+
 ## Classes  
 
 Python is an object-oriented programming language. 
