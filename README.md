@@ -16,7 +16,8 @@
 - [Calendar](https://github.com/Rclarkeweb/practising_python/blob/main/Calendar.py)
 - [Dice Game](https://github.com/Rclarkeweb/practising_python/blob/main/Dice-game.py)
 - [Vowel Eater](https://github.com/Rclarkeweb/practising_python/blob/main/Vowel-Eater.py)
-- [Password Generator](https://github.com/Rclarkeweb/practising_python/blob/main/Password-Generator)  
+- [Password Generator](https://github.com/Rclarkeweb/practising_python/blob/main/Password-Generator)
+- [Student scores](https://github.com/Rclarkeweb/practising_python/blob/main/Student_scores)
 
 ## Tech used
 
