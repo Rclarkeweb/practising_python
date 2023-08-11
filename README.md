@@ -20,6 +20,7 @@
 - [Student scores](https://github.com/Rclarkeweb/practising_python/blob/main/Student_scores)
 - [BMI](https://github.com/Rclarkeweb/practising_python/blob/main/BMI.py)
 - [Leap Year](https://github.com/Rclarkeweb/practising_python/blob/main/Leap_year.py)
+- [Practising Classes](https://github.com/Rclarkeweb/practising_python/blob/main/practising_classes.py)
 
 ## Tech used
 
