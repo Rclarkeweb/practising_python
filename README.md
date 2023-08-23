@@ -21,6 +21,7 @@
 - [BMI](https://github.com/Rclarkeweb/practising_python/blob/main/BMI.py)
 - [Leap Year](https://github.com/Rclarkeweb/practising_python/blob/main/Leap_year.py)
 - [Practising Classes](https://github.com/Rclarkeweb/practising_python/blob/main/practising_classes.py)
+- [Better Calculator](https://github.com/Rclarkeweb/practising_python/blob/main/Better-Calculator.py)
 
 ## Tech used
 
