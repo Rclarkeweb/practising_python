@@ -22,6 +22,8 @@
 - [Leap Year](https://github.com/Rclarkeweb/practising_python/blob/main/Leap_year.py)
 - [Practising Classes](https://github.com/Rclarkeweb/practising_python/blob/main/practising_classes.py)
 - [Better Calculator](https://github.com/Rclarkeweb/practising_python/blob/main/Better-Calculator.py)
+- [Blackjack](https://github.com/Rclarkeweb/practising_python/blob/main/Blackjack.py)
+- [Guess the Number game](https://github.com/Rclarkeweb/practising_python/blob/main/Guess-the-Number.py)
 
 ## Tech used
 
