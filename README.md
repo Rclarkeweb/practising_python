@@ -24,6 +24,8 @@
 - [Better Calculator](https://github.com/Rclarkeweb/practising_python/blob/main/Better-Calculator.py)
 - [Blackjack](https://github.com/Rclarkeweb/practising_python/blob/main/Blackjack.py)
 - [Guess the Number game](https://github.com/Rclarkeweb/practising_python/blob/main/Guess-the-Number.py)
+- [Animal Top Trumps](https://github.com/Rclarkeweb/practising_python/blob/main/animal-top-trumps.py)
+- [Guess the word](https://github.com/Rclarkeweb/practising_python/blob/main/Guess-the-word.py)
 
 ## Tech used
 
