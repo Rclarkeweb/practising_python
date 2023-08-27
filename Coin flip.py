@@ -1,7 +1,7 @@
 import random
 
-def coinFlip():
-    randomNum = random.randint(0,1)
+def coin_flip():
+    random_num = random.randint(0,1)
     userchoice = input("Heads or Tails?: ")
     if userchoice == "Heads" or userchoice == "heads":
         userchoice = "Heads"
@@ -13,10 +13,10 @@ def coinFlip():
         print("Please choose Heads or Tails")
         return
     print("The coin flip landed on: ")
-    if randomNum == 1:
+    if random_num == 1:
         result = "Heads"
         print("HEADS")
-    elif randomNum == 0:
+    elif random_num == 0:
         result = "Tails"
         print("TAILS")
     else:
@@ -29,4 +29,4 @@ def coinFlip():
         print("Sorry, you loose")
     
 
-coinFlip()
+coin_flip()
