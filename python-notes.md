@@ -278,3 +278,89 @@ print(obj.gamma) # prints class variable
 print(hasattr(Sample, 'attr'))
 # False (no attribute 'attr' in Sample Class)
 ```
+
+### OOP Methods
+A method is a function embedded inside a class.  
+There is one fundamental requirement – a method is obliged to have at least one parameter (there are no such things as parameterless methods – a method may be invoked without an argument, but not declared without parameters).  
+The first (or only) parameter is usually named self.  
+The name self suggests the parameter's purpose – it identifies the object for which the method is invoked.  
+If you name a method like this: `__init__`, it won't be a regular method – it will be a constructor.  
+If a class has a constructor, it is invoked automatically and implicitly when the object of the class is instantiated.  
+The constructor:
+- is obliged to have the self parameter (it's set automatically, as usual)
+- may (but doesn't need to) have more parameters than just self; if this happens, the way in which the class name is used to create the object must reflect the __init__ definition;
+- can be used to set up the object, i.e., properly initialize its internal state, create instance variables, instantiate any other objects if their existence is needed, etc.
+```
+class Classy:
+    def __init__(self, value = None):
+        self.var = value
+
+obj_1 = Classy("object")
+obj_2 = Classy()
+
+print(obj_1.var)
+# object
+print(obj_2.var)
+# none
+```
+**Property name mangling** applies to method names, too – a method whose name starts with `__` is (partially) hidden.
+```
+class Classy:
+    def visible(self):
+        print("visible")
+
+    def __hidden(self):
+        print("hidden")
+
+# Create object
+obj = Classy()
+obj.visible() # prints visible
+
+try:
+    obj.__hidden()
+except:
+    print("failed")
+
+# accessing private method
+obj._Classy__hidden()
+
+# will print:
+# visible
+# failed
+# hidden
+```
+
+Each Python class and each Python object is pre-equipped with a set of useful attributes which can be used to examine its capabilities.  
+```
+class Classy:
+    varia = 1 # class variable
+    def __init__(self):
+        self.var = 2 # instance variable
+
+    def method(self):
+        pass
+    
+    def __hidden(self): # hidden method
+        pass
+
+
+obj = Classy()
+
+print(obj.__dict__) # prints {'var': 2}
+print(Classy.__dict__)
+```
+
+`__name__` - The property contains the name of the class.
+`print(ClassName.__name__)`
+
+If you want to find the class of a particular object, you can use a function named type(), which is able (among other things) to find a class which has been used to instantiate any object.
+`obj = ClassName()`
+`print(type(obj).__name__)`
+
+All classes (but not objects) contain a property named __name__, which stores the name of the class. Additionally, a property named __module__ stores the name of the module in which the class has been declared, while the property named __bases__ is a tuple containing a class's superclasses.
+
+#### introspection
+which is the ability of a program to examine the type or properties of an object at runtime;  
+
+#### reflection
+which goes a step further, and is the ability of a program to manipulate the values, properties and/or functions of an object at runtime.
