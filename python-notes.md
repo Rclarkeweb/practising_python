@@ -106,7 +106,7 @@ The `__init__` method is a special method in Python classes that is called when 
 Notes taken from [Datacamp](https://www.datacamp.com/tutorial/introducing-python-magic-methods)
 
 ### Example Class  
-### **Dog class:**  
+**Dog class:**  
 **Properties:**  
 - Age
 - Breed  
@@ -190,3 +190,42 @@ When Python sees that you want to add an instance variable to an object and you'
 
 This is why the `__first` becomes `_ExampleClass__first`.
 The name is now fully accessible from outside the class.  
+
+
+#### Class Variables 
+A class variable is a property which exists in just one copy and is stored outside any object.
+
+```
+class ExampleClass:
+    counter = 0
+    def __init__(self, val = 1):
+        self.__first = val
+        ExampleClass.counter += 1
+
+
+# 5 objects are created so the class counter variable is equal to 5
+example_object_1 = ExampleClass()
+example_object_2 = ExampleClass(2)
+example_object_3 = ExampleClass(4)
+example_object_4 = ExampleClass()
+example_object_5 = ExampleClass()
+
+# __first is a private intance variable (hence the self and __)
+# counter is a class variable
+
+print(example_object_1.__dict__, example_object_1.counter)
+# {'_ExampleClass__first': 1} 5
+
+print(example_object_2.__dict__, example_object_2.counter)
+# {'_ExampleClass__first': 2} 5
+
+print(example_object_3.__dict__, example_object_3.counter)
+# {'_ExampleClass__first': 4} 5
+
+print(example_object_4.counter)
+# 5
+```
+
+Class variables aren't shown in an object's `__dict__`.  
+A class variable always presents the same value in all class instances (objects).  
+Even if you mangle the class variable `counter` (set it to private) `__counter`. And change it in the class to `ExampleClass.__counter += 1`. When you print it out `example_object_1._ExampleClass__counter`, you will still get the number of `ExampleClass` objects that have been created (5), like before.
