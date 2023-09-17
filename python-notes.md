@@ -364,3 +364,76 @@ which is the ability of a program to examine the type or properties of an object
 
 #### reflection
 which goes a step further, and is the ability of a program to manipulate the values, properties and/or functions of an object at runtime.
+
+### Class Inheritance
+Inheritance is a common practice (in object programming) of passing attributes and methods from the superclass (defined and existing) to a newly created class, called the subclass.
+In other words, inheritance is a way of building a new class, not from scratch, but by using an already defined repertoire of traits. The new class inherits (and this is the key) all the already existing equipment, but is able to add some new ones if needed.
+#### `issubclass()`
+```
+# superclass
+class Vehicle:
+    pass
+
+# subclass of vehicle and superclass of TrackedVehicle
+class LandVehicle(Vehicle):
+    pass
+
+# subclass of both vehicle and LandVehicle
+class TrackedVehicle(LandVehicle):
+    pass
+```
+Python offers a function which is able to identify a relationship between two classes, and although its diagnosis isn't complex, it can check if a particular class is a subclass of any other class.
+`issubclass(ClassOne, ClassTwo)`
+It returns True or False
+
+#### `isinstance()`
+An object is an incarnation of a class.
+`isinstance(objectName, ClassName)`
+The function returns True if the object is an instance of the class, or False otherwise.
+
+#### is operator
+`object_one is object_two`
+The is operator checks whether two variables (object_one and object_two here) refer to the same object.
+Variables don't store the objects themselves, but only the handles pointing to the internal Python memory.
+
+#### Inhertiting Methods
+```
+class Super:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return "My name is " + self.name + "."
+
+class Sub(Super):
+    def __init__(self, name):
+        Super.__init__(self, name)
+
+obj = Sub("Andy")
+
+print(obj)
+# My name is Andy.
+```
+As there is no __str__() method within the Sub class, the printed string is to be produced within the Super class. This means that the __str__() method has been inherited by the Sub class.
+
+You can also use the `super()` function. 
+In the last example, we explicitly named the superclass. You can also use the super() function, which accesses the superclass without needing to know its name:
+`super().__init__(name)`
+The super() function creates a context in which you don't have to (moreover, you mustn't) pass the self argument to the method being invoked – this is why it's possible to activate the superclass constructor using only one argument.
+```
+# Testing properties: instance variables.
+class Super:
+    def __init__(self):
+        self.supVar = 11
+
+class Sub(Super):
+    def __init__(self):
+        super().__init__()
+        self.subVar = 12
+
+obj = Sub()
+
+print(obj.subVar) # 12 
+print(obj.supVar) # 11
+```
+The Sub class constructor creates an instance variable named subVar, while the Super constructor does the same with a variable named supVar. Both variables are accessible from within the object of class Sub.
