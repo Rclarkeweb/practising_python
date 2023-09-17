@@ -113,4 +113,80 @@ Notes taken from [Datacamp](https://www.datacamp.com/tutorial/introducing-python
 
 **Methods:**  
 - Eat()
-- Sleep()
+- Sleep()  
+
+#### Instance Variables
+
+```
+class ExampleClass:
+    def __init__(self, val = 1):
+        self.first = val
+
+    def set_second(self, val):
+        self.second = val
+
+
+example_object_1 = ExampleClass()
+example_object_2 = ExampleClass(2)
+
+example_object_2.set_second(3)
+
+example_object_3 = ExampleClass(4)
+example_object_3.set_second(6)
+example_object_3.third = 5
+
+print(example_object_1.__dict__)
+print(example_object_2.__dict__)
+print(example_object_3.__dict__)
+
+# {'first': 1}  
+# {'first': 2, 'second': 3}  
+# {'first': 4, 'second': 6, 'third': 5}
+```
+
+Python objects, when created, are gifted with a small set of predefined properties and methods. Each object has got them, whether you want them or not. One of them is a variable named `__dict__` (it's a dictionary).
+
+The variable contains the names and values of all the properties (variables) the object is currently carrying. Let's make use of it to safely present an object's contents.  
+
+The class named `ExampleClass` has a constructor, which unconditionally creates an instance variable named `first`. The `set_variable` method creates another instance variable called `second`. Modifying an instance variable of any object has no impact on all the remaining objects. Instance variables are perfectly isolated from each other.
+
+#### Private Instance Variables  
+
+```
+class ExampleClass:
+    def __init__(self, val = 1):
+        self.__first = val
+
+    def set_second(self, val = 2):
+        self.__second = val
+
+
+example_object_1 = ExampleClass()
+example_object_2 = ExampleClass(2)
+
+example_object_2.set_second(3)
+
+example_object_3 = ExampleClass(4)
+example_object_3.__third = 5
+
+
+print(example_object_1.__dict__)
+# {'_ExampleClass__first': 1}
+
+print(example_object_2.__dict__)
+# {'_ExampleClass__first': 2, '_ExampleClass__second': 3}
+
+print(example_object_3.__dict__)
+# {'_ExampleClass__first': 4, '__third': 5}
+
+print(example_object_1._ExampleClass__first)
+# 1
+```
+
+The instance variables have become private (they now have `__` in front of them.  
+When Python sees that you want to add an instance variable to an object and you're going to do it inside any of the object's methods, it mangles the operation in the following way:  
+- it puts a class name before your name;  
+- it puts an additional underscore at the beginning.
+
+This is why the `__first` becomes `_ExampleClass__first`.
+The name is now fully accessible from outside the class.  
