@@ -73,6 +73,10 @@ joe.walk()
 I am walking
 """
 ```
+
+
+The self parameter is a reference to the current instance of the class, and is used to access variables that belongs to the class.  
+  
 A function, on the other hand, is different: we do not have to create an instance of a class. 
 
 Python functions are steps executed as a block of code only when called. They are defined independently of any class object, 
@@ -148,7 +152,11 @@ Python objects, when created, are gifted with a small set of predefined properti
 
 The variable contains the names and values of all the properties (variables) the object is currently carrying. Let's make use of it to safely present an object's contents.  
 
-The class named `ExampleClass` has a constructor, which unconditionally creates an instance variable named `first`. The `set_variable` method creates another instance variable called `second`. Modifying an instance variable of any object has no impact on all the remaining objects. Instance variables are perfectly isolated from each other.
+The class named `ExampleClass` has a constructor, which unconditionally creates an instance variable named `first`. The `set_variable` method creates another instance variable called `second`. Modifying an instance variable of any object has no impact on all the remaining objects. Instance variables are perfectly isolated from each other.  
+
+An instance variable is a property whose existence depends on the creation of an object. Every object can have a different set of instance variables.  
+
+Moreover, they can be freely added to and removed from objects during their lifetime. All object instance variables are stored inside a dedicated dictionary named __dict__, contained in every object separately.  
 
 #### Private Instance Variables  
 
@@ -189,8 +197,9 @@ When Python sees that you want to add an instance variable to an object and you'
 - it puts an additional underscore at the beginning.
 
 This is why the `__first` becomes `_ExampleClass__first`.
-The name is now fully accessible from outside the class.  
-
+The name is now fully accessible from outside the class.    
+  
+An instance variable can be private when its name starts with __, but don't forget that such a property is still accessible from outside the class using a mangled name constructed as _ClassName__PrivatePropertyName.  
 
 #### Class Variables 
 A class variable is a property which exists in just one copy and is stored outside any object.
@@ -229,3 +238,43 @@ print(example_object_4.counter)
 Class variables aren't shown in an object's `__dict__`.  
 A class variable always presents the same value in all class instances (objects).  
 Even if you mangle the class variable `counter` (set it to private) `__counter`. And change it in the class to `ExampleClass.__counter += 1`. When you print it out `example_object_1._ExampleClass__counter`, you will still get the number of `ExampleClass` objects that have been created (5), like before.
+
+A class variable is a property which exists in exactly one copy, and doesn't need any created object to be accessible. Such variables are not shown as `__dict__` content.  
+
+#### hasattr function  
+A function named hasattr() can be used to determine if any object/class contains a specified property.  
+Python provides a function which is able to safely check if any object/class contains a specified property. The function is named `hasattr`, and expects two arguments to be passed:
+- the class or the object being checked;
+- the name of the property whose existence has to be reported (note: it has to be a string containing the attribute name, not the name alone)
+The function returns True or False
+```
+class ExampleClass:
+    attr = 1
+
+print(hasattr(ExampleClass, 'attr')) # True
+print(hasattr(ExampleClass, 'prop')) # False
+```
+
+#### Instance, Private and Class Variable Summary
+```
+class Sample:
+    gamma = 0 # Class variable.
+    def __init__(self):
+ 
+        self.alpha = 1 # Instance variable.
+        self.__delta = 3 # Private instance variable.
+ 
+# create an object called obj
+obj = Sample()
+
+obj.beta = 2 # Another instance variable (existing only inside the "obj" instance.)
+
+print(obj.__dict__)
+# {'alpha': 1, '_Sample__delta': 3, 'beta': 2}
+
+print(obj.gamma) # prints class variable
+# 0
+
+print(hasattr(Sample, 'attr'))
+# False (no attribute 'attr' in Sample Class)
+```
