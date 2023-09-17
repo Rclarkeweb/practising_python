@@ -109,7 +109,7 @@ The `__init__` method is a special method in Python classes that is called when 
 
 Notes taken from [Datacamp](https://www.datacamp.com/tutorial/introducing-python-magic-methods)
 
-### Example Class  
+***Example Class***  
 **Dog class:**  
 **Properties:**  
 - Age
