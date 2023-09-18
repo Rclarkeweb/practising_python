@@ -36,6 +36,42 @@ This exception shows up when you try to apply a data whose type cannot be accept
 
 This exception arrives – among other occasions – when you try to activate a method which doesn't exist in an item you're dealing with.
 
+```
+def reciprocal(n):
+    try:
+        n = 1 / n
+    except ZeroDivisionError:
+        print("Division failed")
+        n = None
+    else:
+        print("Everything went fine")
+    finally:
+        print("It's time to say goodbye")
+        return n
+
+
+print(reciprocal(2)) # prints Everything went fine
+# It's time to say goodbye
+# 0.5
+print(reciprocal(0)) # Division failed
+# It's time to say goodbye
+# None
+```
+The else: branch of the try statement is executed when there has been no exception during the execution of the try: block.
+
+The `finally` block is always executed (it finalizes the try-except block execution, hence its name), no matter what happened earlier, even when raising an exception, no matter whether this has been handled or not.
+
+Exceptions are classes. when an exception is raised, an object of the class is instantiated, and goes through all levels of program execution, looking for the except branch that is prepared to deal with it.
+
+#### Extending the except block
+```
+try:
+    i = int("Hello!")
+except Exception as e:
+    print(e)
+    print(e.__str__())
+```
+the except statement is extended, and contains an additional phrase starting with the as keyword, followed by an identifier. The identifier is designed to catch the exception object so you can analyze its nature and draw some useful conclusions.
 ***   
 
 ## Classes  
@@ -437,3 +473,50 @@ print(obj.subVar) # 12
 print(obj.supVar) # 11
 ```
 The Sub class constructor creates an instance variable named subVar, while the Super constructor does the same with a variable named supVar. Both variables are accessible from within the object of class Sub.
+
+#### polymorphism and hierarchy
+inheritance extends a class's capabilities
+composition projects a class as a container
+Polymorphism is often used in Class methods, where we can have multiple classes with the same method name.
+
+
+> single inheritance class is always simpler, safer, and easier to understand and maintain;
+> 
+> multiple inheritance is always risky, as you have many more opportunities to make a mistake in identifying these parts of the superclasses which will effectively influence the new class;
+>
+> multiple inheritance may make overriding extremely tricky; moreover, using the super() function becomes ambiguous;
+>
+> multiple inheritance violates the single responsibility principle (more details here: https://en.wikipedia.org/wiki/Single_responsibility_principle) as it makes a new class of two (or more) classes that know nothing about each other;
+>
+> we strongly suggest multiple inheritance as the last of all possible solutions
+
+```
+class Dog:
+    kennel = 0
+    def __init__(self, breed):
+        self.breed = breed
+        Dog.kennel += 1
+    def __str__(self):
+        return self.breed + " says: Woof!"
+
+
+class SheepDog(Dog):
+    def __str__(self):
+        return super().__str__() + " Don't run away, Little Lamb!"
+
+
+class GuardDog(Dog):
+    def __str__(self):
+        return super().__str__() + " Stay where you are, Mister Intruder!"
+
+
+rocky = SheepDog("Collie")
+luna = GuardDog("Dobermann")
+bob = SheepDog("Sausage")
+
+print(rocky) # Collie says: Woof! Don't run away, Little Lamb!
+print(luna) # Dobermann says: Woof! Stay where you are, Mister Intruder!
+print(Dog.kennel) # 3
+print(issubclass(SheepDog, Dog), issubclass(SheepDog, GuardDog)) # True, False
+print(luna is luna, rocky is luna) # True, False
+```
