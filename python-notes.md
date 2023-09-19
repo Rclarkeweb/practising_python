@@ -520,3 +520,116 @@ print(Dog.kennel) # 3
 print(issubclass(SheepDog, Dog), issubclass(SheepDog, GuardDog)) # True, False
 print(luna is luna, rocky is luna) # True, False
 ```
+
+## Generators
+A Python generator is a piece of specialized code able to produce a series of values, and to control the iteration process. This is why generators are very often called iterators.
+The `range()` function is, in fact, a generator, which is (in fact, again) an iterator.
+A function returns one, well-defined value – it may be the result of a more or less complex evaluation of, something like a polynomial, and is invoked once – only once.
+A generator returns a series of values, and in general, is (implicitly) invoked more than once.
+
+The iterator protocol is a way in which an object should behave to conform to the rules imposed by the context of the for and in statements.
+An object conforming to the iterator protocol is called an iterator.
+An iterator is an object that contains a countable number of values.
+An iterator is an object that can be iterated upon, meaning that you can traverse through all the values.
+When you create a list, you can read its items one by one. Reading its items one by one is called iteration. The list is an iterable.
+Generators are iterators, a kind of iterable you can only iterate over once. Generators do not store all the values in memory, they generate the values on the fly
+
+Technically, in Python, an iterator is an object which implements the iterator protocol, which consist of the methods `__iter__()` and `__next__()`.
+An iterator must provide two methods:
+- `__iter__()` which should return the object itself and which is invoked once (it's needed for Python to successfully start the iteration)
+- `__next__()` which is intended to return the next value (first, second, and so on) of the desired series – it will be invoked by the for/in statements in order to pass through the next iteration; if there are no more values to provide, the method should raise the `StopIteration` exception.
+
+To create an object/class as an iterator you have to implement the methods `__iter__()` and `__next__()` to your object.
+
+All classes have a function called `__init__()`, which allows you to do some initializing when the object is being created.
+
+The `__iter__()` method acts similar, you can do operations (initializing etc.), but must always return the iterator object itself.
+
+The `__next__()` method also allows you to do operations, and must return the next item in the sequence.
+
+Create an iterator that returns numbers, starting with 1, and each sequence will increase by one (returning 1,2,3,4,5 etc.):
+```
+class MyNumbers:
+  def __iter__(self):
+    self.a = 1
+    return self
+
+  def __next__(self):
+    x = self.a
+    self.a += 1
+    return x
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+print(next(myiter)) # prints 1
+print(next(myiter)) # prints 2
+```
+##### StopIteration
+The example above would continue forever if you had enough next() statements, or if it was used in a for loop.
+To prevent the iteration from going on forever, we can use the `StopIteration` statement.
+In the `__next__()` method, we can add a terminating condition to raise an error if the iteration is done a specified number of times.
+```
+class MyNumbers:
+  def __iter__(self):
+    self.a = 1
+    return self
+
+  def __next__(self):
+    if self.a <= 5:
+      x = self.a
+      self.a += 1
+      return x
+    else:
+      raise StopIteration
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+for x in myiter:
+  print(x) # prints 1 2 3 4 5
+```
+
+##### Yield
+The yield statement suspends a function’s execution and sends a value back to the caller, but retains enough state to enable the function to resume where it left off. When the function resumes, it continues execution immediately after the last yield run. This allows its code to produce a series of values over time, rather than computing them at once and sending them back like a list.
+Return sends a specified value back to its caller whereas Yield can produce a sequence of values. We should use yield when we want to iterate over a sequence, but don’t want to store the entire sequence in memory. Yield is used in Python generators. A generator function is defined just like a normal function, but whenever it needs to generate a value, it does so with the yield keyword rather than return. If the body of a def contains yield, the function automatically becomes a generator function. 
+```
+def fun(n):
+    for i in range(n):
+        yield i
+ 
+for v in fun(5):
+    print(v) # prints 0 1 2 3 4
+```
+The main difference between return and yield is, the return statement terminates the execution of the function. Whereas, the yield statement only pauses the execution of the function.
+```
+def fun_generator():
+    yield "Hello world!!"
+    yield "Boo"
+ 
+obj = fun_generator()
+ 
+print(next(obj)) # prints Hello world!!
+print(next(obj)) # prints Boo
+```
+Generators can used in List Comprehensions (creating lists)
+```
+def powers_of_2(n):
+    power = 1
+    for i in range(n):
+        yield power
+        power *= 2
+ 
+t = [x for x in powers_of_2(5)]
+print(t) # prints [1, 2, 4, 8, 16]
+```
+List comprehension:
+```
+the_list = []
+
+for x in range(10):
+    the_list.append(1 if x % 2 == 0 else 0)
+
+print(the_list) # prints [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+# starts at 0 which is even
+```
