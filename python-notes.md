@@ -593,6 +593,9 @@ for x in myiter:
 ##### Yield
 The yield statement suspends a function’s execution and sends a value back to the caller, but retains enough state to enable the function to resume where it left off. When the function resumes, it continues execution immediately after the last yield run. This allows its code to produce a series of values over time, rather than computing them at once and sending them back like a list.
 Return sends a specified value back to its caller whereas Yield can produce a sequence of values. We should use yield when we want to iterate over a sequence, but don’t want to store the entire sequence in memory. Yield is used in Python generators. A generator function is defined just like a normal function, but whenever it needs to generate a value, it does so with the yield keyword rather than return. If the body of a def contains yield, the function automatically becomes a generator function. 
+
+The yield statement can be used only inside functions. The yield statement suspends function execution and causes the function to return the yield's argument as a result. Such a function cannot be invoked in a regular way – its only purpose is to be used as a generator (i.e. in a context that requires a series of values, like a for loop).
+
 ```
 def fun(n):
     for i in range(n):
@@ -632,4 +635,87 @@ for x in range(10):
 
 print(the_list) # prints [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
 # starts at 0 which is even
+```
+**List comprehension vs Generators**
+```
+the_list = [1 if x % 2 == 0 else 0 for x in range(10)]
+the_generator = (1 if x % 2 == 0 else 0 for x in range(10))
+# different brackets. len(the_list) = 10 len(the_generator) = error, generators have no length.
+```
+
+A list comprehension becomes a generator when used inside parentheses (used inside () brackets, it produces a regular list). For example:
+
+## Lambda function
+A lambda function is a function without a name (you can also call it an anonymous function).
+`lambda parameters: expression`
+```
+sqr = lambda x: x * x    # one-parameter anonymous function that returns the value of its squared argument.
+pwr = lambda x, y: x ** y   # takes two parameters and returns the value of the first one raised to the power of the second one.
+```
+The power of lambda is better shown when you use them as an anonymous function inside another function.
+```
+def myfunc(n):
+  return lambda a : a * n
+```
+#### Map
+The map() function executes a specified function for each item in an iterable. The item is sent to the function as a parameter.
+`map(function, iterables)`
+```
+def myfunc(a):
+  return len(a)
+​
+x = map(myfunc, ('apple', 'banana', 'cherry'))
+​
+print(x)
+​
+#convert the map into a list, for readability:
+print(list(x))
+```
+```
+list_1 = [x for x in range(5)]
+list_2 = list(map(lambda x: 2 ** x, list_1))
+print(list_2) # [1, 2, 4, 8, 16]
+```
+
+
+#### Filter
+The filter() function returns an iterator where the items are filtered through a function to test if the item is accepted or not.
+`filter(function, iterable)`
+```
+ages = [5, 12, 17, 18, 24, 32]
+
+def myFunc(x):
+  if x < 18:
+    return False
+  else:
+    return True
+
+adults = filter(myFunc, ages)
+
+for x in adults:
+  print(x) # 18 24 32
+```
+```
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+```
+
+#### Closures
+Python closure is a nested function that allows us to access variables of the outer function even after the outer function is closed.
+closure is a nested function that helps us access the outer function's variables even after the outer function is closed. For example;
+```
+def greet():
+    # variable defined outside the inner function
+    name = "John"
+    
+    # return a nested anonymous function
+    return lambda: "Hi " + name
+
+# call the outer function
+message = greet()
+
+# call the inner function
+print(message())
+
+# Output: Hi John
 ```
